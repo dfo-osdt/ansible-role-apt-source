@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-role-apt-source
+apt_source_repository: "http://archive.ubuntu.com/ubuntu"
+apt_source_security_repository: "http://security.ubuntu.com/ubuntu"

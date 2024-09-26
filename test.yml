@@ -1,0 +1,9 @@
+---
+- name: Install source.list
+  hosts: localhost
+  vars:
+    apt_source_repository: "https://mirror.digitaloceans.dev"
+    apt_source_security_repository: "https://mirror.digitaloceans.dev"
+  tasks:
+    - name: install source
+      include_tasks: tasks/main.yml

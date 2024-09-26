@@ -1,0 +1,8 @@
+galaxy_info:
+  author: Vincent Auger
+  description: Update target for sources.list on Ubuntu
+  company: DFO - COSI
+
+  license: MIT
+
+  min_ansible_version: "2.9"

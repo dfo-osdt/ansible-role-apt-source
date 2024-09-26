@@ -1,0 +1,16 @@
+---
+# tasks file for ansible-role-apt-source
+- name: Fail if we're not on Ubuntu
+  ansible.builtin.fail:
+    msg: "This role only works on Ubuntu"
+  when: ansible_distribution != 'Ubuntu'
+
+- name: Copy source.list to /etc/apt/sources.list
+  ansible.builtin.template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  notify: Update apt cache
