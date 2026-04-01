@@ -5,7 +5,28 @@
     msg: "This role only works on Ubuntu"
   when: ansible_distribution != 'Ubuntu'
 
-- name: Copy source.list to /etc/apt/sources.list
+- name: Deploy DEB822 apt sources to /etc/apt/sources.list.d/ubuntu.sources (Ubuntu >= 22.04)
+  ansible.builtin.template:
+    src: ubuntu.sources.j2
+    dest: /etc/apt/sources.list.d/ubuntu.sources
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_distribution_version is version('22.04', '>=')
+  notify: Update apt cache
+
+- name: Empty /etc/apt/sources.list to avoid duplicate sources (Ubuntu >= 22.04)
+  ansible.builtin.copy:
+    content: "# This file is managed by Ansible. Sources are defined in /etc/apt/sources.list.d/ubuntu.sources\n"
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_distribution_version is version('22.04', '>=')
+
+- name: Deploy apt sources to /etc/apt/sources.list (Ubuntu < 22.04)
   ansible.builtin.template:
     src: sources.list.j2
     dest: /etc/apt/sources.list
@@ -13,4 +34,5 @@
     group: root
     mode: u=rw,g=r,o=r
   become: true
+  when: ansible_distribution_version is version('22.04', '<')
   notify: Update apt cache

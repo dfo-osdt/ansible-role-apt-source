@@ -1,0 +1,14 @@
+# This file is managed by Ansible. Do not edit manually.
+# Changes to this file will be overwritten.
+
+Types: deb
+URIs: {{ apt_source_repository }}/ubuntu/
+Suites: {{ ansible_distribution_release }} {{ ansible_distribution_release }}-updates {{ ansible_distribution_release }}-backports
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: {{ apt_source_security_repository }}/ubuntu/
+Suites: {{ ansible_distribution_release }}-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
