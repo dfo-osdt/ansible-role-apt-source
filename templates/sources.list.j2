@@ -1,8 +1,8 @@
 # This file is managed by Ansible. Do not edit manually.
 # Changes to this file will be overwritten.
 
-deb {{ apt_source_repository }}/ubuntu/ {{ ansible_distribution_release }} main restricted universe multiverse
-deb {{ apt_source_repository }}/ubuntu/ {{ ansible_distribution_release }}-updates main restricted universe multiverse
-deb {{ apt_source_repository }}/ubuntu/ {{ ansible_distribution_release }}-backports main restricted universe multiverse
-deb {{ apt_source_security_repository }}/ubuntu/ {{ ansible_distribution_release }}-security main restricted universe multiverse
+deb {{ apt_source_repository }}/ubuntu/ {{ ansible_facts['distribution_release'] }} main restricted universe multiverse
+deb {{ apt_source_repository }}/ubuntu/ {{ ansible_facts['distribution_release'] }}-updates main restricted universe multiverse
+deb {{ apt_source_repository }}/ubuntu/ {{ ansible_facts['distribution_release'] }}-backports main restricted universe multiverse
+deb {{ apt_source_security_repository }}/ubuntu/ {{ ansible_facts['distribution_release'] }}-security main restricted universe multiverse
 
